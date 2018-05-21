@@ -1,10 +1,8 @@
 package user;
 
 import message.PadBitSequence;
-import message.PrivateKeys;
 import message.PublicKeys;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 

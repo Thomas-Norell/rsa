@@ -1,11 +1,5 @@
 package user;
 
-import math.Keys;
-import message.PrivateKeys;
-import message.PublicKeys;
-
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args){
         //keygen *username*

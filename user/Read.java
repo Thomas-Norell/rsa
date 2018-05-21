@@ -3,7 +3,6 @@ import message.*;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Read {
     public static void main(String[] args) {
