@@ -1,11 +1,13 @@
 package message;
 import math.FermatPrime;
 import math.Prime;
+
+import java.io.Serializable;
 import java.util.List;
 
 import java.math.BigInteger;
 
-public class PrivateKeys {
+public class PrivateKeys implements Serializable{
     public BigInteger d;
     public Prime p;
     public Prime q;

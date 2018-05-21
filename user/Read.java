@@ -6,36 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Read {
-    public static void main(String[] args){
-        String fileName = IOUtils.prompt("Enter filename: ");
-        List<String> content = IOUtils.read("inbox/encrypted/" + fileName);
-        PrivateKeys privKeys = new PrivateKeys(IOUtils.read("private.txt"));
-        String decryptedContent = decrypt(content, privKeys, new PadUnicode8());
-        List <String> contentToWrite = new ArrayList<>();
-        String tempString = "";
-        for (int i = 0; i < decryptedContent.length(); i++){
-            if (decryptedContent.charAt(i) == '\n'){
-                contentToWrite.add(tempString);
-                tempString = "";
-            }
-            else {
-                tempString += decryptedContent.charAt(i);
-            }
+    public static void main(String[] args) {
+        String filename;
+        String privKeysFile;
+        try {
+            filename = args[1];
+            privKeysFile = args[2];
         }
-        IOUtils.write("inbox/plaintext/" + fileName, contentToWrite);
+        catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("You must pass in a file to encrypt and the receiver's public keys");
+        }
+        ObjectReader encryptedFile = new ObjectReader(filename);
+        ArrayList<BigInteger> encryptedMessage = (ArrayList<BigInteger>) encryptedFile.readObject();
 
+        ObjectReader privKeys = new ObjectReader(privKeysFile);
+        PrivateKeys myKeys = (PrivateKeys) privKeys.readObject();
+
+        ArrayList<Character[]> chunks = new ArrayList<>();
+
+        for (BigInteger n : encryptedMessage) {
+            chunks.add(PadBitSequence.decrypt(n, myKeys));
+        }
+        Character[] message = PadBitSequence.deChunk(chunks);
+        char[] rawMessage = new char[message.length];
+        for (int i = 0; i < message.length; i++) {
+            rawMessage[i] = message[i];
+        }
+        FileUtils.writeCharArray("decrypted", rawMessage);
     }
 
-
-    public static String decrypt(List<String> message, PrivateKeys privKeys, PadScheme pScheme){
-        //TODO: Defaulting to ASCII padding. Need to add capability to switch padding schemes.
-        String plaintext = "";
-        String[] chunks = new String[message.size()];
-
-        for (int i = 0; i < message.size() && message.get(i) != null; i++){
-            chunks[i] = message.get(i);
-            plaintext += pScheme.decrypt(new BigInteger(chunks[i]), privKeys);
-        }
-        return plaintext;
-    }
 }

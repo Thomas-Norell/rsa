@@ -1,9 +1,10 @@
 package math;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class FermatPrime implements Prime {
+public class FermatPrime implements Prime, Serializable{
     int numDigits;
     private BigInteger value;
 

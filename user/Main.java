@@ -1,23 +1,38 @@
 package user;
 
+import math.Keys;
+import message.PrivateKeys;
+import message.PublicKeys;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        //keygen *username*
+        //read *filename* *priv keys*
+        //compose *filename* *pub keys*
 
-        String option = IOUtils.prompt("Enter 'setup', 'compose', or 'read': ");
-        if (option.equals("setup")){
-            Setup.main(null);
+
+        String mode;
+        try {
+            mode = args[0];
         }
-        else if (option.equals("compose")) {
-            Compose.main(null);
+        catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("Enter one of: keygen, read, compose");
         }
-        else if (option.equals("read")){
-            Read.main(null);
+        if (mode.equals("keygen")) {
+            Setup.main(args);
+        }
+        else if (mode.equals("read")) {
+            Read.main(args);
+
+        }
+        else if (mode.equals("compose")) {
+            Compose.main(args);
+
         }
         else {
-            System.out.print("Invalid Option");
-            main(null);
+            throw new IllegalArgumentException("Enter one of: keygen, read, compse");
         }
 
     }
