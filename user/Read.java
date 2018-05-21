@@ -31,7 +31,7 @@ public class Read {
         for (int i = 0; i < message.length; i++) {
             rawMessage[i] = message[i];
         }
-        FileUtils.writeCharArray("decrypted", rawMessage);
+        FileUtils.writeCharArray(filename.substring(0, filename.length()-4), rawMessage);
     }
 
 }

@@ -128,26 +128,8 @@ public class Tools {
         return result;
     }
 
-    //Damn, wikipedia's code is slow. Must be all the comparisons
 
-    /*public static BigInteger modExponent(BigInteger base, BigInteger exponent, BigInteger modulus) {
-        BigInteger result = new BigInteger("1");
-        BigInteger one = new BigInteger("1");
-        BigInteger zero = new BigInteger("0");
-        BigInteger two = new BigInteger("0");
-
-        while (exponent.compareTo(zero) == 1){
-            if (exponent.mod(two).equals(one)){
-                result = (result.multiply(base)).mod(modulus);
-            }
-            exponent = exponent.shiftRight(1);
-            base = (base.multiply(base)).mod(modulus);
-        }
-
-        return result;
-    }*/
-
-    //My old implementation. Good idea but I did better.
+    //Orignal implementation
 
     public static int modExponent(int base, int exponent, int modulus) {
         String bits = Long.toBinaryString(exponent);

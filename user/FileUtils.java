@@ -1,6 +1,7 @@
 package user;
 import java.util.ArrayList;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.BinaryIn;
+import edu.princeton.cs.algs4.BinaryOut;
 
 /*
 
