@@ -13,7 +13,7 @@ public class Setup {
         catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("You must give a username during key generation");
         }
-        Keys usersKeys = new Keys(200);
+        Keys usersKeys = new Keys(617);
         PrivateKeys prKeys = new PrivateKeys(usersKeys);
         PublicKeys puKeys = new PublicKeys(prKeys);
         ObjectWriter keysWriter = new ObjectWriter(username + ".priv");
