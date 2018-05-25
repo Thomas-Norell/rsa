@@ -19,7 +19,7 @@ public class Tests {
         user.Main.main(args); //Generate Bob's keys
 
         Random r = new Random();
-        char[] data = new char[100];
+        char[] data = new char[100000];
         for (int i = 0; i < data.length; i++){
             data[i] = (char) r.nextInt(Integer.parseInt("FF", 16));
         }
@@ -42,6 +42,10 @@ public class Tests {
 
 
         char[] decrypted = FileUtils.readFile("tests/aliceMessage.txt");
+        new File("alice.priv").delete();
+        new File("alice.pub").delete();
+        new File("bob.priv").delete();
+        new File("bob.pub").delete();
 
         assertArrayEquals("Your results did not match the expected results", data, decrypted);
 

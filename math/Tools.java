@@ -112,6 +112,7 @@ public class Tools {
 
     //TODO: This could be rewritten to do fewer operations if performance becomes an issue
     //TODO: Performance is an issue. Necessitates rewrite at some point.
+    //TODO: Write a subroutine in C
     public static BigInteger modExponent(BigInteger base, BigInteger exponent, BigInteger modulus) {
         String bits = exponent.toString(2);
         BigInteger[] powerList = new BigInteger[bits.length()];

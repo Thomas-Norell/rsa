@@ -9,7 +9,7 @@ public class PadBitSequence {
 
     //Prepares each subset of the char[] for encryption
     public static ArrayList<Character[]> doChunking(Character[] message, PublicKeys pubKeys){
-        int chunkSize = (pubKeys.n.toString().length()) / 5 - 1; //chars are 16 bits,log(2^17-1)/log(10) = 5, each char is 5 digits in decimal
+        int chunkSize = pubKeys.n.toString(2).length()/16 - 1; //chars are 16 bits,log(2^17-1)/log(10) = 5, each char is 5 digits in decimal
         ArrayList<Character[]> chunks = new ArrayList<>();
         int i = 0;
         while (i < message.length) {
@@ -42,6 +42,7 @@ public class PadBitSequence {
             bits += thisChar;
 
         }
+        //TODO: Random Padding for extra security
         bits = '1' + bits; //Throwing a '1' at the beginning to ensure proper parsing during decryption
 
         return new BigInteger(bits, 2);
